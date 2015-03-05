@@ -616,7 +616,9 @@ License: You must have a valid license purchased only from themeforest(the above
 								<i class="fa fa-cogs font-blue-steel"></i>
 								<span class="caption-subject font-blue-steel bold uppercase">Tasks</span>
 							</div>
+
 							<div class="tools">
+
 								<a href="javascript:;" class="collapse">
 								</a>
 								<a href="#portlet-config" data-toggle="modal" class="config">
@@ -628,6 +630,16 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 						<div class="portlet-body">
+						<div class="row bot-pad-15">
+							<div class="col-md-1">
+								<a href="javascript:;" class="btn btn-xs green">
+									New Ticket <i class="fa fa-plus"></i>
+								</a>
+							</div>
+							<div class="col-md-11"></div>
+
+						</div>
+						
 							<table class="table table-striped table-bordered table-hover" id="sample_3">
 							<thead>
 							<tr>

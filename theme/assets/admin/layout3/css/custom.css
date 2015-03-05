@@ -22,3 +22,11 @@ Rounded Portlets
 	font-weight: bold;
 	text-decoration: none;
 }
+
+.bot-pad-15 { 
+	padding-bottom: 15px;
+}
+
+.right-margin-15 {
+	margin-right: 15px;
+}
