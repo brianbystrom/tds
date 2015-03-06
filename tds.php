@@ -47,6 +47,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <link href="./theme/assets/global/css/plugins.css" rel="stylesheet" type="text/css">
 <link href="./theme/assets/admin/layout3/css/layout.css" rel="stylesheet" type="text/css">
 <link href="./theme/assets/admin/layout3/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color">
+<link rel="stylesheet" type="text/css" href="./theme/assets/global/plugins/bootstrap-select/bootstrap-select.min.css"/>
+<link rel="stylesheet" type="text/css" href="./theme/assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="./theme/assets/global/plugins/jquery-multi-select/css/multi-select.css"/>
+<link rel="stylesheet" type="text/css" href="./theme/assets/global/plugins/bootstrap-datepicker/css/datepicker3.css"/>
 <link href="./theme/assets/admin/layout3/css/custom.css" rel="stylesheet" type="text/css">
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
@@ -573,20 +577,78 @@ License: You must have a valid license purchased only from themeforest(the above
 	<div class="page-content">
 		<div class="container">
 			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-			<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal fade" id="new-ticket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-							<h4 class="modal-title">Modal title</h4>
+							<h4 class="modal-title">Create a new task</h4>
 						</div>
 						<div class="modal-body">
-							 Widget settings form goes here
+						<div class="row">
+							 <div class="form-body">
+							 <form class="form-horizontal" role="form" method="post" action="new_task.php">
+									<div class="form-group">
+										<label class="col-md-3 control-label">Name: </label>
+										<div class="col-md-8">
+											<input type="text" name='name' class="form-control" placeholder="Enter text">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">Description: </label>
+										<div class="col-md-8">
+											<textarea name='description'class="form-control" rows="3"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3">Multiple</label>
+										<div class="col-md-4">
+											<select name="assigned[]" class="bs-select form-control" multiple>
+												<option value='1'>Brian Bystrom</option>
+												<option value='2'>Cory Henderson</option>
+												<option value='3'>Dustin Dilworth</option>
+												<option value='4'>Kirsten Scott</option>
+												<option value='5'>Shannon Dehaven</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3">Due Date:</label>
+										<div class="col-md-3">
+											<div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" data-date-start-date="+0d">
+												<input name='due-date' type="text" class="form-control" readonly>
+												<span class="input-group-btn">
+												<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+												</span>
+											</div>
+											<!-- /input-group -->
+											<span class="help-block">
+											Select the due date. </span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3">Default</label>
+										<div class="col-md-4">
+											<select name='urgency' class="bs-select form-control">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+											</select>
+											<span class="help-block">
+											1 - Least Urgent, 5 - Urgent </span>
+										</div>
+									</div>
+								
+							</div>
+						</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn blue">Save changes</button>
+							<input type="submit" class="btn blue">
 							<button type="button" class="btn default" data-dismiss="modal">Close</button>
 						</div>
+						</form>
 					</div>
 					<!-- /.modal-content -->
 				</div>
@@ -632,8 +694,8 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="portlet-body">
 						<div class="row bot-pad-15">
 							<div class="col-md-1">
-								<a href="javascript:;" class="btn btn-xs green">
-									New Ticket <i class="fa fa-plus"></i>
+								<a href="#new-ticket" data-toggle="modal" class="btn btn-xs green">
+									New Task <i class="fa fa-plus"></i>
 								</a>
 							</div>
 							<div class="col-md-11"></div>
@@ -776,6 +838,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="./theme/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="./theme/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="./theme/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
 <script src="./theme/assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
 <script src="./theme/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="./theme/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
@@ -783,15 +846,23 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="./theme/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="./theme/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
 <script src="./theme/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="./theme/assets/global/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="./theme/assets/global/plugins/select2/select2.min.js"></script>
+<script type="text/javascript" src="./theme/assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="./theme/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <!-- END CORE PLUGINS -->
 <script src="./theme/assets/global/scripts/metronic.js" type="text/javascript"></script>
 <script src="./theme/assets/admin/layout3/scripts/layout.js" type="text/javascript"></script>
 <script src="./theme/assets/admin/layout3/scripts/demo.js" type="text/javascript"></script>
+<script src="./theme/assets/admin/pages/scripts/components-dropdowns.js"></script>
+<script src="./theme/assets/admin/pages/scripts/components-pickers.js"></script>
 <script>
       jQuery(document).ready(function() {    
          Metronic.init(); // init metronic core components
 Layout.init(); // init current layout
 Demo.init(); // init demo features
+ComponentsDropdowns.init();
+ComponentsPickers.init();
       });
    </script>
 <!-- END JAVASCRIPTS -->
