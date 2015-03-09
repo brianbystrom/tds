@@ -3,9 +3,7 @@
 		include('library.php');
 		include('./theme/include/config.inc');
 
-		$tasks = get_tasks($conn);
-
-
+		$task_id = isset($_GET['task_id']) ? $_GET['task_id'] : null;
 
 ?>
 
@@ -676,7 +674,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="portlet-title">
 							<div class="caption">
 								<i class="fa fa-cogs font-blue-steel"></i>
-								<span class="caption-subject font-blue-steel bold uppercase">Tasks</span>
+								<span class="caption-subject font-blue-steel bold uppercase">Task #1234</span>
 							</div>
 
 							<div class="tools">
@@ -702,6 +700,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 						</div>
 						
+						<? if($task_id != null) { ?>
 							<table class="table table-striped table-bordered table-hover" id="sample_3">
 							<thead>
 							<tr>
@@ -765,6 +764,11 @@ License: You must have a valid license purchased only from themeforest(the above
 						
 							</tbody>
 							</table>
+						<? 
+							} else {
+								echo "Error: missing task id.";
+							}
+						?>
 						</div>
 					</div>
 

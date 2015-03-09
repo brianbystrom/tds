@@ -47,7 +47,7 @@ library index
 
 			try {
 	        
-		        $PDO = $conn->prepare('SELECT * FROM tasks');
+		        $PDO = $conn->prepare('SELECT * FROM tasks WHERE assigned_to LIKE "%-1-%" OR assigned_to LIKE "%-1-,%"');
 		        //$PDO->bindParam(':cid', $id, PDO::PARAM_STR);
 		        $PDO->execute();
 		        
@@ -62,6 +62,33 @@ library index
 		    }
 
 			return $tasks;
+	}
+
+//////////////////////////////////////////////
+// Pulls name of person by ID
+//////////////////////////////////////////////
+
+	function get_name($conn,$id) {
+
+			try {
+	        
+		        $PDO = $conn->prepare('SELECT * FROM login WHERE id = :id');;
+		        $PDO->bindParam(':id', $id, PDO::PARAM_INT);
+		        $PDO->execute();
+		        
+		        $PDO->setFetchMode(PDO::FETCH_OBJ);
+
+		
+
+		        $person = $PDO->fetch();
+
+		        $name = $person->name;
+
+		    } catch(PDOException $e) {
+		        echo 'ERROR: '.$e->getMessage();    
+		    }
+
+			return $name;
 	}
 
 

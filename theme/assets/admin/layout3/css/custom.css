@@ -30,3 +30,11 @@ Rounded Portlets
 .right-margin-15 {
 	margin-right: 15px;
 }
+
+.urgency-5 {
+	background-color: red;
+}
+
+.valign-middle {
+	vertical-align: middle;
+}
